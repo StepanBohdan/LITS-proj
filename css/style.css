@@ -1,0 +1,528 @@
+
+html, 
+body, 
+/*.container, 
+.content-wrap {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}*/
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #e6e6e6;
+}
+.row {
+  background-color: #e6e6e6;
+  margin: 0;
+}
+
+/*------BEGIN SLIDE-MENU-------
+--------overlay,show-menu,-----
+--------content, hamburger,----
+--------icon-list, menu-wrap---*/
+.menu-wrap a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu-wrap a:hover,
+.menu-wrap a:focus {
+  color: #ffcd3f;
+}
+
+.content-wrap {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content {
+  position: relative;  
+  background: #b4bad2;
+}
+
+/*.content::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  content: '';
+  opacity: 0;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0);
+  -webkit-transition: opacity 0.4s, -webkit-transform 0s 0.4s;
+  transition: opacity 0.4s, transform 0s 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}*/
+
+/*-------------------------------*/
+/*          Dark Overlay - тінь на весь екран (затемнення)         */
+/*-------------------------------*/
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+.icon-list li {
+  list-style: none;
+}
+.icon-list span {
+  text-transform: uppercase;
+}
+.call {
+  margin-top: 50px;
+}
+
+/*-------------------------------*/
+/*       Hamburger-Cross         */
+/*-------------------------------*/
+
+.hamburger {
+  background: transparent;
+  border: none;
+  display: block;
+  height: 32px;
+  margin-left: 320px;
+  position: fixed;
+  top: 20px;
+  width: 32px;
+  z-index: 1000;
+}
+
+.hamburger:hover { outline: none; }
+
+.hamburger:focus { outline: none; }
+
+.hamburger:active { outline: none; }
+
+.hamburger.is-closed:before {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.35s ease-in-out;
+  color: #ffffff;
+  content: '';
+  display: block;
+  font-size: 14px;
+  line-height: 32px;
+  opacity: 0;
+  text-align: center;
+  width: 100px;
+}
+
+.hamburger.is-closed:hover before {
+  -webkit-transform: translate3d(-100px, 0, 0);
+  -webkit-transition: all 0.35s ease-in-out;
+  display: block;
+  opacity: 1;
+}
+
+.hamburger.is-closed:hover .hamb-top {
+  -webkit-transition: all 0.35s ease-in-out;
+  top: 0;
+}
+
+.hamburger.is-closed:hover .hamb-bottom {
+  -webkit-transition: all 0.35s ease-in-out;
+  bottom: 0;
+}
+
+.hamburger.is-closed .hamb-top {
+  -webkit-transition: all 0.35s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.7);
+  top: 5px;
+}
+
+.hamburger.is-closed .hamb-middle {
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: -2px;
+  top: 50%;
+}
+
+.hamburger.is-closed .hamb-bottom {
+  -webkit-transition: all 0.35s ease-in-out;
+  background-color: rgba(255, 255, 255, 0.7);
+  bottom: 5px;
+}
+
+.hamburger.is-closed .hamb-top, .hamburger.is-closed .hamb-middle, .hamburger.is-closed .hamb-bottom, .hamburger.is-open .hamb-top, .hamburger.is-open .hamb-middle, .hamburger.is-open .hamb-bottom {
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.hamburger.is-open .hamb-top {
+  -webkit-transform: rotate(45deg);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
+  background-color: #ffffff;
+  margin-top: -2px;
+  top: 50%;
+}
+
+.hamburger.is-open .hamb-middle {
+  background-color: #ffffff;
+  display: none;
+}
+
+.hamburger.is-open .hamb-bottom {
+  -webkit-transform: rotate(-45deg);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
+  background-color: #ffffff;
+  margin-top: -2px;
+  top: 50%;
+}
+
+.hamburger.is-open:before {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-transition: all 0.35s ease-in-out;
+  color: #ffffff;
+  content: '';
+  display: block;
+  font-size: 14px;
+  line-height: 32px;
+  opacity: 0;
+  text-align: center;
+  width: 100px;
+}
+
+.hamburger.is-open:hover before {
+  -webkit-transform: translate3d(-100px, 0, 0);
+  -webkit-transition: all 0.35s ease-in-out;
+  display: block;
+  opacity: 1;
+}
+
+/* Menu */
+.menu-wrap {
+  opacity: 0.7;
+  position: absolute;
+  z-index: 1001;
+  width: 300px;
+  height: 100%;
+  background: #a2a2a2;
+  padding: 2em 1.5em 0;
+  font-size: 1.15em;
+  -webkit-transform: translate3d(-320px,0,0);
+  transform: translate3d(-320px,0,0);
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.menu, .icon-list {
+  height: 100%;
+}
+
+.icon-list {
+  -webkit-transform: translate3d(0,100%,0);
+  transform: translate3d(0,100%,0);
+}
+
+.icon-list a {
+  display: block;
+  padding: 0.8em;
+  -webkit-transform: translate3d(0,500px,0);
+  transform: translate3d(0,500px,0);
+}
+
+.icon-list,
+.icon-list a {
+  -webkit-transition: -webkit-transform 0s 0.4s;
+  transition: transform 0s 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.icon-list a:nth-child(2) {
+  -webkit-transform: translate3d(0,1000px,0);
+  transform: translate3d(0,1000px,0);
+}
+
+.icon-list a:nth-child(3) {
+  -webkit-transform: translate3d(0,1500px,0);
+  transform: translate3d(0,1500px,0);
+}
+
+.icon-list a:nth-child(4) {
+  -webkit-transform: translate3d(0,2000px,0);
+  transform: translate3d(0,2000px,0);
+}
+
+.icon-list a:nth-child(5) {
+  -webkit-transform: translate3d(0,2500px,0);
+  transform: translate3d(0,2500px,0);
+}
+
+.icon-list a:nth-child(6) {
+  -webkit-transform: translate3d(0,3000px,0);
+  transform: translate3d(0,3000px,0);
+}
+.icon-list a:nth-child(7) {
+  -webkit-transform: translate3d(0,3500px,0);
+  transform: translate3d(0,3500px,0);
+}
+
+.icon-list a span {
+  margin-left: 10px;
+  font-weight: 700;
+}
+
+
+/* Shown menu */
+.show-menu .menu-wrap {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.show-menu .icon-list,
+.show-menu .icon-list a {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transition: -webkit-transform 0.8s;
+  transition: transform 0.8s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.show-menu .icon-list a {
+  -webkit-transition-duration: 0.9s;
+  transition-duration: 0.9s;
+}
+
+.show-menu .content::before {
+  opacity: 1;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s;
+  -webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+
+/*------END SLIDE-MENU---------
+--------overlay,show-menu,-----
+--------content, hamburger,----
+--------icon-list, menu-wrap---*/
+
+
+.header {
+  display: inline;
+  background-color: blue;
+  width: 100%;
+}
+button{
+ /*   width: 80px;
+    height: 40px;*/
+    background: #555;
+    border: none;
+    outline: none;
+    position: relative;
+    cursor: pointer;
+    color: #d6e9c6;
+}
+.btn, .form-control {
+  border-radius: 2px;
+  border: none;
+}
+.fa-2x {
+    font-size: 1.6em;
+}
+/*.col {
+  margin-left: 15px;
+  margin-right: 15px;
+}*/
+#city {
+  background-color: #ddd;
+  color: #808080;
+  /*width: 150px;*/
+  height: 40px;
+  padding-left: 15px;
+  border: 0;
+}
+select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   cursor: pointer;
+}
+.btn-default {
+  background-color: #5b5b5b;
+  color: #e1e1e1;
+}
+.order, .review {
+  margin: 10px 0 20px 0;
+  padding: 0.5em 20px 0.5em 20px;
+}
+.more {
+  margin: 0 auto 20px auto;
+  display: inline-block;
+}
+.show-more {
+  text-align: center;
+  color: #525252;
+ text-transform: uppercase;
+}
+.public-title {
+  color: #525252;
+}
+
+/*.logo {
+  position: relative;
+}*/
+.logo img{
+  position: absolute;
+}
+.column1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/*.row {
+  background-color: #fff;
+}*/
+.row-header{
+  background-color: #fff;
+}
+.table-price {
+  background-color: #595959;
+  color: #fff;
+  padding: 5px;
+  max-width: 430px;
+}
+.col-price {
+  border-right: 2px solid #3b3b3b;
+  line-height: 100%;
+}
+.info {
+  background-color: #3b3b3b;
+  color: #fff;
+}
+
+.icon-select {
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+select {
+  background-image: ;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.flat-img {
+  padding: 0;
+  max-width: 400px;
+}
+.flat-img img{
+  max-width: 400px;
+}
+
+.table-flat {
+  max-width: 400px;
+  margin: 1% 1%;
+  display: inline-block;
+}
+.best-flat {
+  font-weight: bold;
+  color: #3b3b3b;
+  margin: 50px 0 20px 15px;
+}
+.content-flat {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+
+
+.belgian-news-general img{
+ width: 100%;
+}
+
+.belgian-news{
+ background-color: #ddd;
+}
+.belgian-news img{
+ width: 100%;
+ padding: 10px;
+}
+.belgian-news h4{
+ color: #525252;
+ text-transform: uppercase;
+}
+.belgian-news:hover{
+ color: #e6e6e6;
+}
+.belgian-news p{
+ color: #525252;
+}
+.belgian-news p:hover{
+color: #e6e6e6;
+}
+.belgian-news:hover{
+ background-color: #525252;
+}
+.feedback-belgian h4{
+ color: #525252;
+}
+.footer-belgian img{
+ float: left;
+ width: 53px;
+}
+.footer-text-belgian p{
+ color: #525252;
+ font-weight: bold;
+}
+.footer-text-belgian{
+ margin-top: 12px;
+ margin-left: 45px;
+}
+.footer-belgian {
+  background-color: #fff;
+}
+.footer-belgian a{
+ text-decoration: none;
+ color: #525252;
+ margin: 25px 5px 25px 0;
+ display: inline-block;
+ font-weight: bold;
+
+}
+.footer-link-belgians{
+ text-align: center;
+}
+.footer-belgian li{
+ list-style-type: none;
+ display: inline;
+ float: right;
+ margin-left: 15px;
+}
+.b-text {
+  margin: 15px 0 0 0;
+}
+.btn-feedback {
+  float: right;
+}
+
+.btn-feedback:hover{
+ background-color: #fff;
+}

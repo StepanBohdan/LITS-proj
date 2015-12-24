@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=800">
+  <title>Belgium town</title>
+  
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <div class="row row-header">
+      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1">
+        <div class="logo">
+          <a href=""><img src="img/logo.png" alt=""></a>
+        </div>
+      </div>
+      <!-- <div class="col-xs-1 col-sm-1 col-md-1 col-lg-0"></div> -->
+      <div class="col-xs-9 col-sm-5 col-md-5 col-lg-2 column1 ">
+        <input class="form-control" type="text" id="city" name="name" placeholder="Ціна">
+      </div>
+      <!-- <div class="col-xs-3 col-sm-0 col-md-0 col-lg-0"></div> -->
+      <div class="col-xs-9 col-sm-5 col-md-5 col-lg-2 column1 ">
+        <input class="form-control" type="text" id="city" name="name" placeholder="Площа"> 
+      </div>
+      <!-- <div class="col-xs-3 col-sm-2 col-md-2 col-lg-0"></div> -->
+      <div class="col-xs-7 col-sm-5 col-md-5 col-lg-2 column1 ">
+        <div class="type-flat">
+          <select class="form-control" name="city" id="city" required>
+            <option disabled selected>Тип квартири</option>
+            <option value="1-кімнатна">1-кімнатна</option>
+            <option value="2-кімнатна">2-кімнатна</option>
+            <option value="3-кімнатна">3-кімнатна</option>
+            <option value="4-кімнатна">4-кімнатна</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 column1 ">
+        <div class="city">
+          <select class="form-control" name="city" id="city" required>
+            <option disabled selected class="city-items">Місто</option>
+            <option value="Київ" class="city-items">Київ</option>
+            <option value="Львів" class="city-items">Львів</option>
+          </select>
+        </div>
+      </div>
+      <!-- <div class="col-xs-8 col-sm-0 col-md-0 col-lg-0"></div> -->
+      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 column1 ">
+        <div class="search-button">
+          <button class="btn btn-default" type="submit"><i class="fa fa-search fa-2x"></i></button>
+        </div>
+      </div>
+      <div class="col-xs-2 col-sm-1 col-md-1 col-lg-1 column1">
+        <div class="user">
+          <button class="btn btn-default" id="fb-login" type="submit"><i class="fa fa-user fa-2x"></i></button>
+        </div>
+      </div>
+    </div> <!-- end row -->
+  </div> <!-- end header -->
+
+  <div id="container">
+    <div class="overlay"></div>
+    <div class="menu-wrap">
+      <nav class="menu">
+        <ul class="icon-list">
+          <li><a href="#"><i class="fa fa-home fa-2x"></i><span>Головна</span></a></li>
+          <li><a href="#"><i class="fa fa-building-o fa-2x"></i><span>Пошук квартир</span></a></li>
+          <li><a href="#"><i class="fa fa-file-text-o fa-2x"></i><span>Публікації</span></a></li>
+          <li><a href="#"><i class="fa fa-newspaper-o fa-2x"></i><span>Новини</span></a></li>
+          <li><a href="#"><i class="fa fa-globe fa-2x"></i><span>Контакти</span></a></li>
+          <li><a href="#"><i class="fa fa-info-circle fa-2x"></i><span>Про компанію</span></a></li>
+          <li class="call"><a href="#"><i class="fa fa-phone fa-2x"></i><span>Замовити дзвінок</span></a></li>
+          <li class="write-m"><a href="#"><i class="fa fa-envelope fa-2x"></i><span>Написати повідомлення</span></a></li>
+        </ul>
+      </nav>
+
+<button type="button" id="hamburger" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas"> <span class="hamb-top"></span> <span class="hamb-middle"></span> <span class="hamb-bottom"></span> </button>
+ </div> <!-- end menu-wrap -->
+   
+    <div class="content-wrap">
+      <div class="content">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="img/interior.jpg" alt="...">
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/interior.jpg" alt="...">
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <img src="img/interior.jpg" alt="...">
+      <div class="carousel-caption">
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+      </div><!-- content -->
+    </div> <!-- content-wrap -->
+  </div> <!-- end container <--><br>
+
+  <div class="content-flat">
+    <!-- <h4 class="best-flat">Найкращі квартири</h4> -->
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat1.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 9.800 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 71.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Городоцька 280, кв. 22</h3>
+          <p>Тип: 3-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        <!-- </div> -->
+      </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat2.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 14.000 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 64.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Личаківська 204, кв. 54</h3>
+          <p>Тип: 2-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat3.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 12.600 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 46.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Наукова 68, кв. 44</h3>
+          <p>Тип: 1-о кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>  <!-- END col -->
+      </div>  <!-- END row -->
+    </div> <!-- END table -->
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat4.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 9.800 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 91.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Мазепи 10, кв. 32</h3>
+          <p>Тип: 4-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat5.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 13.700 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 40.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Пасічна 188, кв. 8</h3>
+          <p>Тип: 1-о кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat6.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 11.300 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 68.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Кн. Ольги 122а, кв. 8</h3>
+          <p>Тип: 2-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>  <!-- END col -->
+      </div>  <!-- END row -->
+    </div> <!-- END table -->
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat7.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 16.800 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 77.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Шевченка 32, кв. 54</h3>
+          <p>Тип: 3-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat8.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 15.500 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 38.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. Замарстинівська 233, кв. 2</h3>
+          <p>Тип: 1-о кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>
+      </div>
+    </div> <!-- END table -->
+
+    <div class="table-flat">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 flat-img">
+          <a href="#">
+            <img src="img/flat9.png" alt="">
+          </a>
+        </div>
+      </div>
+      <div class="row table-price">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-price">
+          <img src="img/coins.png" alt=""> 16.300 грн/м<sup>2</sup></img>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img src="img/flat.png" alt=""> 69.0 м<sup>2</sup></img>
+        </div>
+      </div>
+      <div class="row info">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Вул. О. Назарука 1, кв. 27</h3>
+          <p>Тип: 2-х кімнатні</p>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default order" type="button">Замовити</button>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <button class="btn btn-default review" type="button">Переглянути</button>
+          </div>
+        </div>  <!-- END col -->
+      </div>  <!-- END row -->
+    </div> <!-- END table -->
+  </div> <!-- END content-flat -->
+  <div class="more">
+    <a href=""><h4 class="show-more">ПОКАЗАТИ ЩЕ</h4></a>
+  </div><br>
+
+
+<div class="row">
+   <div class="belgian-news-general col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <a href=""><img src="img/public1.png">
+    <h4 class="public-title">Житловий квартала "Бельгійське містечко" передбачає будівництво 312 помешкань</h4></a>
+   </div>
+   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="row belgian-news">
+     <div class="col-md-4 col-lg-4">
+      <img src="img/news1.png">
+     </div>
+     <div class="col-md-8 col-lg-8">
+      <h4 id="news-title">Бельгійське містечко розігрує поїздку на двох в Бельгію</h4>
+      <p class="news-data">04.08.2015</p>
+     </div>
+    </div>
+    <div class="row belgian-news">
+     <div class="col-md-4 col-lg-4">
+      <img src="img/news2.png">
+     </div>
+     <div class="col-md-8 col-lg-8">
+      <h4 id="news-title">Відкриття нового житлового комплексу на вулиці Мазепи 10</h4>
+      <p class="news-data">25.11.2015</p>
+     </div>
+    </div>
+    <div class="row belgian-news">
+     <div class="col-md-4 col-lg-4">
+      <img src="img/news3.png">
+     </div>
+     <div class="col-md-8 col-lg-8">
+      <h4 id="news-title">Наше будівництво у вересні</h4>
+      <p class="news-data">17.10.2015</p>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div><br>
+
+ <div class="feedback-belgian">
+  <div class="row">
+   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <h4>Розташування на карті</h4>
+    <div class="thumbnail" id="thumb-contact">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4516.742678902841!2d30.21497000202527!3d50.553957530365615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472b31b81ab95fd5%3A0x922f5bb724016689!2z0KHRgtCw0LTQuNC-0L0gItCu0LLQuNC70LXQudC90YvQuSIsINCR0YPRh9CwLCDQmtC40ZfQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCAwODI5Mg!5e0!3m2!1suk!2sua!4v1442923379982" frameborder="0" style=box-shadow: "0 0 8px #888"; allowfullscreen></iframe>
+            </div>
+          </div>
+   </div>
+   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 feedback-massage">
+    <h4>Зворотній зв'язок</h4>
+    <form class="form-horizontal" id="form" action="send.php" method="POST">
+      <div class="form-group">
+        <div class="col-sm-12">
+        <input type="text" class="form-control" name="name" placeholder="Імя та Прізвище"> </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+        <input type="text" class="form-control" name="phone"placeholder="Контактний телефон"></p> 
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-12">
+        <input type="text" class="form-control" name="mail"placeholder="Eлектронна скринька"></p> 
+        </div>
+      </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+        <textarea type="text" class="form-control" rows="3" name="message" placeholder="Текст повідомлення..."></textarea><br>
+        <input class="btn btn-default btn-feedback" type="submit" value="Надіслати">
+         </div>
+      </div>
+      </form>
+   </div>
+  </div>
+ </div><br>
+
+ <div class="">
+  <div class="row footer-belgian">
+   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <div><img src="img/logo.png"></div>
+    <div class="futter-text-belgian"><p class="b-text">Бельгійське містечко</p>
+    <p>Belgian Village</p></div>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 footer-link-belgians">
+    <a href="#">Про компанію</a>
+    <a href="#">Новини</a>
+    <a href="#">Контакти</a>
+   </div>
+   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <ul>
+     <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+     <li><a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+     <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+     <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/javascript.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+
+<script src="js/classie.js"></script>
+<script src="js/main.js"></script>
+<script src="js/news-title.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  var trigger = $('.hamburger'),
+    overlay = $('.overlay'),
+    isClosed = false;
+
+    trigger.click(function () {
+    hamburger_cross();      
+});
+
+function hamburger_cross() {
+  if (isClosed == true) {
+    overlay.hide();
+    trigger.removeClass('is-open');
+    trigger.addClass('is-closed');
+    isClosed = false;
+  } else {   
+    overlay.show();
+    trigger.removeClass('is-closed');
+    trigger.addClass('is-open');
+    isClosed = true;
+  }
+  }
+
+  $('[data-toggle="offcanvas"]').click(function () {
+    $('#container').toggleClass('toggled');
+  });  
+});
+</script>
+
+<script type="text/javascript">
+var ref = new Firebase("https://fireb-login.firebaseio.com");
+ref.authWithOAuthPopup("facebook", function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+  }
+});
+var ref = new Firebase("https://fireb-login.firebaseio.com");
+    ref.authWithOAuthPopup("facebook", function(error, authData){
+    /* Your Code */
+    }, {
+    remember: "sessionOnly",
+    scope: "email,user_likes"
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#form").submit(function() { //устанавливаем событие отправки для формы с id=form
+    // alert('subdmit');
+    var form_data = $(this).serialize(); //собераем все данные из формы
+    $.ajax({
+      type: "POST", //Метод отправки
+      url: "send.php", //путь до php фаила отправителя
+      data: form_data,
+      success: function() {
+      //код в этом блоке выполняется при успешной отправке сообщения
+    alert("Ваше повідомлення надіслано!");
+      }
+    });
+    return false;
+  });
+});
+</script>
+  </body>
+</html>
